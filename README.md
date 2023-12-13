@@ -15,7 +15,7 @@ Benchmark common patterns in Go to figure out what has better performance
 
 summary
 
-It is better to use `string builder`,especially in the for loop, to concatenate the strings. If we write `string + string` in the for loop, the process will takes a long time to  allocate memories for the intermediate string.
+It is better to use `string builder`, especially in the for loop, to concatenate the strings. If we write `string + string` in the for loop, the process will takes a long time to  allocate memories for the intermediate strings.
 
 ## String to []Rune, []Byte
 
