@@ -17,7 +17,7 @@ summary
 
 It is better to use `string builder`, especially in the for loop, to concatenate the strings. If we write `string + string` in the for loop, the process will takes a long time to  allocate memories for the intermediate strings.
 
-## String to []Rune, []Byte
+## Convert string to []Rune, []Byte
 
 | Items  | Iterations | ns/op | B/op | allocs/op |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -30,3 +30,7 @@ It is better to use `string builder`, especially in the for loop, to concatenate
 summary
 
 The ns/op of RuneToString is 3 times greater than StringToRune. The ns/op of ByteToString is just slightly slower than that of StringToByte. Just be careful when using string conversion, especially double conversion (string -> rune -> string).
+
+## Structure padding
+
+Go will pad the structure to their largest field alignment guarantees. See `T5` in `structure_padding.go` for more information.
