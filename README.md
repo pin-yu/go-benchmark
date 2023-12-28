@@ -34,3 +34,23 @@ The ns/op of RuneToString is 3 times greater than StringToRune. The ns/op of Byt
 ## Structure padding
 
 Go will pad the structure to their largest field alignment guarantees. See `T5` in `structure_padding.go` for more information.
+
+## Slice
+
+| Items  | Iterations | ns/op | B/op | allocs/op |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| BenchmarkSetValueToSliceOf0Len0Cap        | 49  | 2247754 | 41678080 | 38 |
+| BenchmarkSetValueToSliceOfNLenNCap        | 248 | 487447 | 8003584 | 1 |
+| BenchmarkSetValueToSliceOf0LenNCap        | 196 | 593774 | 8003584 | 1 |
+| BenchmarkSetPtrToSliceOf0Len0Cap          | 4 | 32370386 | 49678092 | 1000038 |
+| BenchmarkSetPtrToSliceOfNLenNCap          | 8 | 15173344 | 16003590 | 1000001 |
+| BenchmarkSetPtrToSliceOf0LenNCap          | 9 | 14534449 | 16003587 | 1000001 |
+| BenchmarkSetPtrToInterfaceSliceOf0Len0Cap | 2 | 53907958 | 96036600 | 1000039 |
+| BenchmarkSetPtrToInterfaceSliceOfNLenNCap | 8 | 15025208 | 24007170 | 1000001 |
+| BenchmarkSetPtrToInterfaceSliceOf0LenNCap | 9 | 13565810 | 24007173 | 1000001 |
+
+summary
+
+1. The access speed is the fastest if we know the expected length of a slice and use `make([]struct{}, n)` to initialize length and capacity at first.
+2. Be aware of using slices of pointer, because they are extremely slow.
+3. Using slices of interface is the worst case.
