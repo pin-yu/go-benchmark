@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestXxx(t *testing.T) {
+func TestStructurePadding(t *testing.T) {
 	require.Equal(t, uintptr(1), unsafe.Sizeof(T1{}))
 	require.Equal(t, uintptr(2), unsafe.Sizeof(T2{}))
 	require.Equal(t, uintptr(3), unsafe.Sizeof(T3{}))
