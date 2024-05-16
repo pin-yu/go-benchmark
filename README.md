@@ -50,7 +50,7 @@ The ns/op of RuneToString is 3 times greater than StringToRune. The ns/op of Byt
 
 summary
 
-Use `slices.SortStableFunc`, use `slices.SortStableFunc`, use `slices.SortStableFunc`.
+Just use `slices.SortStableFunc`.
 Obviously, `slices.SortStableFunc` is faster than `sort.SliceStable`.
 
 ## Multiplication and Division
