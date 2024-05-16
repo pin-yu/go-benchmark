@@ -31,9 +31,18 @@ summary
 
 The ns/op of RuneToString is 3 times greater than StringToRune. The ns/op of ByteToString is just slightly slower than that of StringToByte. Just be careful when using string conversion, especially double conversion (string -> rune -> string).
 
-## Structure padding
+## Multiplication and Division
 
-Go will pad the structure to their largest field alignment guarantees. See `T5` in `structure_padding.go` for more information.
+| Items  | Iterations | ns/op | B/op | allocs/op |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| BenchmarkMultiplyFloat64 | 3859906 | 30.46 | 0 | 0 |
+| BenchmarkDivideFloat64 | 3769795 | 30.97 | 0 | 0 |
+| BenchmarkMultiplyInt64 | 3946886 | 30.36 | 0 | 0 |
+| BenchmarkDivideInt64 | 3856773 | 31.01 | 0 | 0 |
+
+summary
+
+There is no significant difference among each benchmarks.
 
 ## Slice
 
@@ -54,3 +63,7 @@ summary
 1. The access speed is the fastest if we know the expected length of a slice and use `make([]struct{}, n)` to initialize length and capacity at first.
 2. Be aware of using slices of pointer, because they are extremely slow.
 3. Using slices of interface is the worst case.
+
+## Structure padding
+
+Go will pad the structure to their largest field alignment guarantees. See `T5` in `structure_padding.go` for more information.
