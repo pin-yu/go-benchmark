@@ -31,6 +31,28 @@ summary
 
 The ns/op of RuneToString is 3 times greater than StringToRune. The ns/op of ByteToString is just slightly slower than that of StringToByte. Just be careful when using string conversion, especially double conversion (string -> rune -> string).
 
+## SliceStable and SortStable
+
+| Items  | Iterations | ns/op | B/op | allocs/op |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| BenchmarkSliceStable1KInt | 1063 | 114435 | 56 | 2 |
+| BenchmarkSliceStable10KInt | 63 | 1714606 | 56 | 2 |
+| BenchmarkSliceStable1KStruct | 1054 | 112602 | 56 | 2 |
+| BenchmarkSliceStable10KStruct | 67 | 1709536 | 56 | 2 |
+| BenchmarkSliceStable1KPtr | 991 | 157943 | 56 | 2 |
+| BenchmarkSliceStable10KPtr | 60 | 2475229 | 56 | 2 |
+| BenchmarkSortStable1KInt | 1314 | 91088 | 0 | 0 |
+| BenchmarkSortStable10KInt | 88 | 1309370 | 0 | 0 |
+| BenchmarkSortStable1KStruct | 1318 | 90344 | 0 | 0 |
+| BenchmarkSortStable10KStruct | 91 | 1302630 | 0 | 0 |
+| BenchmarkSortStable1KPtr | 1246 | 134754 | 0 | 0 |
+| BenchmarkSortStable10KPtr | 82 | 1871397 | 0 | 0 |
+
+summary
+
+Use `slices.SortStableFunc`, use `slices.SortStableFunc`, use `slices.SortStableFunc`.
+Obviously, `slices.SortStableFunc` is faster than `sort.SliceStable`.
+
 ## Multiplication and Division
 
 | Items  | Iterations | ns/op | B/op | allocs/op |
@@ -42,7 +64,7 @@ The ns/op of RuneToString is 3 times greater than StringToRune. The ns/op of Byt
 
 summary
 
-There is no significant difference among each benchmarks.
+There is no significant difference among each benchmarks. However, division is slightly slower than multiplication, regardless of whether you use int64 or float64 data types.
 
 ## Slice
 
