@@ -31,6 +31,28 @@ summary
 
 The ns/op of RuneToString is 3 times greater than StringToRune. The ns/op of ByteToString is just slightly slower than that of StringToByte. Just be careful when using string conversion, especially double conversion (string -> rune -> string).
 
+## Slice and Sort
+
+| Items  | Iterations | ns/op | B/op | allocs/op |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| BenchmarkSliceNonStable1KInt | 1048 | 132409 | 56 | 2 |
+| BenchmarkSliceNonStable10KInt | 69 | 1728983 | 56 | 2 |
+| BenchmarkSliceNonStable1KStruct | 1052 | 121992 | 56 | 2 |
+| BenchmarkSliceNonStable10KStruct | 70 | 1730771 | 56 | 2 |
+| BenchmarkSliceNonStable1KPtr | 970 | 143101 | 56 | 2 |
+| BenchmarkSliceNonStable10KPtr | 63 | 2065714 | 56 | 2 |
+| BenchmarkSortNonStable1KInt | 1162 | 103081 | 0 | 0 |
+| BenchmarkSortNonStable10KInt | 90 | 1318897 | 0 | 0 |
+| BenchmarkSortNonStable1KStruct | 1327 | 98192 | 0 | 0 |
+| BenchmarkSortNonStable10KStruct | 90 | 1323675 | 0 | 0 |
+| BenchmarkSortNonStable1KPtr | 1094 | 122999 | 0 | 0 |
+| BenchmarkSortNonStable10KPtr | 84 | 1698583 | 0 | 0 |
+
+summary
+
+Just use `slices.SortFunc`.
+Obviously, `slices.SortFunc` is faster and no additional memory consumption than `sort.Slice`.
+
 ## SliceStable and SortStable
 
 | Items  | Iterations | ns/op | B/op | allocs/op |
@@ -51,7 +73,7 @@ The ns/op of RuneToString is 3 times greater than StringToRune. The ns/op of Byt
 summary
 
 Just use `slices.SortStableFunc`.
-Obviously, `slices.SortStableFunc` is faster than `sort.SliceStable`.
+Obviously, `slices.SortStableFunc` is faster and no additional memory consumption than `sort.SliceStable`.
 
 ## Multiplication and Division
 
